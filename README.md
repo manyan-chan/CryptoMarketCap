@@ -1,7 +1,7 @@
 # Crypto Market Cap Widget 
 
 ## Usage
-This widget gets the latest crypto market cap in USD. Data comes from coinmarketcap API.
+This widget gets the latest crypto market cap in USD. Data comes from https://www.coingecko.com/.
 
 ## Setup
 1. Install [Übersicht](http://tracesof.net/uebersicht/)

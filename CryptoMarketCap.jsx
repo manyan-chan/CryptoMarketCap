@@ -1,7 +1,3 @@
-// insert your own api key
-// get api key from https://coinmarketcap.com/api/
-const api_key = 'placeholder';
-
 // update every 5 mins
 const update_interval = 1000 * 60 * 5;
 
@@ -38,19 +34,13 @@ export const command = async (dispatch) => {
 };
 
 const getCap = (dispatch) => {
-	fetch(
-		`http://127.0.0.1:41417/https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=${api_key}`
-	)
+	fetch('https://api.coingecko.com/api/v3/global')
 		.then((res) => res.json())
 		.then((data) => {
-			fetch('https://api.coingecko.com/api/v3/global')
-				.then((res) => res.json())
-				.then((data2) => {
-					return dispatch({
-						cap: data.data.quote.USD.total_market_cap,
-						change: data2.data.market_cap_change_percentage_24h_usd,
-					});
-				});
+			return dispatch({
+				cap: data.data.total_market_cap.usd,
+				change: data.data.market_cap_change_percentage_24h_usd,
+			});
 		});
 };
 
