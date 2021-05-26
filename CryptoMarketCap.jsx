@@ -1,3 +1,11 @@
+/*
+Copyright (c) 2021, Manyan Chan
+All rights reserved.
+
+This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. 
+*/
+
 // update every 5 mins
 const update_interval = 1000 * 60 * 5;
 
