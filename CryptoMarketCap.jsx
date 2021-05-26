@@ -13,6 +13,7 @@ export const className = `
 	border-radius: 10px;
 	background-color: rgba(0,0,0,0.3);
 	text-align: right;
+	-webkit-font-smoothing: antialiased;
 
 	span {
 		font-size: 16px;
@@ -26,8 +27,8 @@ export const className = `
 
 	p {
 		font-size: 2em;
-		font-weight: 100;
-		margin-top: 10px;
+		font-weight: 200;
+		margin-top: 5px;
 		margin-bottom:0;
 	}
 }`;
@@ -42,13 +43,21 @@ const getCap = (dispatch) => {
 	)
 		.then((res) => res.json())
 		.then((data) => {
-			//console.log(data);
-			return dispatch({
-				cap: data.data.quote.USD.total_market_cap,
-			});
-		})
-		.catch((err) => {
-			console.log(err);
+			fetch('https://coingecko.p.rapidapi.com/global', {
+				method: 'GET',
+				headers: {
+					'x-rapidapi-key':
+						'f1cb71feabmsh5c2284ec9899c11p1f290fjsn6e2b51b5a325',
+					'x-rapidapi-host': 'coingecko.p.rapidapi.com',
+				},
+			})
+				.then((res) => res.json())
+				.then((data2) => {
+					return dispatch({
+						cap: data.data.quote.USD.total_market_cap,
+						change: data2.data.market_cap_change_percentage_24h_usd,
+					});
+				});
 		});
 };
 
@@ -59,16 +68,24 @@ const execute = (action, interval) => {
 	setInterval(action, interval);
 };
 
-export const render = ({ cap }) => {
+export const render = ({ cap, change }) => {
 	function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	}
 	const num = `$ ${numberWithCommas(Math.round(cap))}`;
-	console.log(num);
+	console.log(change);
+
 	return (
 		<div className='cryptoMarketCap'>
 			<span>Crypto Market Cap</span>
 			<p>{num}</p>
+			<span
+				style={{
+					color: change > 0 ? '#1dcc5a' : '#cf1111',
+					fontWeight: 'normal',
+				}}>
+				{Number.parseFloat(change).toPrecision(3) + '%'}
+			</span>
 		</div>
 	);
 };
