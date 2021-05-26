@@ -43,14 +43,7 @@ const getCap = (dispatch) => {
 	)
 		.then((res) => res.json())
 		.then((data) => {
-			fetch('https://coingecko.p.rapidapi.com/global', {
-				method: 'GET',
-				headers: {
-					'x-rapidapi-key':
-						'f1cb71feabmsh5c2284ec9899c11p1f290fjsn6e2b51b5a325',
-					'x-rapidapi-host': 'coingecko.p.rapidapi.com',
-				},
-			})
+			fetch('https://api.coingecko.com/api/v3/global')
 				.then((res) => res.json())
 				.then((data2) => {
 					return dispatch({
