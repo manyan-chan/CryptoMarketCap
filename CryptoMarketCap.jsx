@@ -73,7 +73,7 @@ export const render = ({ cap, change }) => {
 			<p>Crypto Market Cap</p>
 			<p className='Number'>{num}</p>
 			<p className={change > 0 ? 'Positive' : 'Negative'}>
-				{Number.parseFloat(change).toPrecision(3) + '%'}
+				{Number.parseFloat(change).toFixed(2) + '%'}
 			</p>
 		</div>
 	);
