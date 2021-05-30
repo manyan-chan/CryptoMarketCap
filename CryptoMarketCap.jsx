@@ -19,22 +19,25 @@ export const className = `
 	-webkit-font-smoothing: antialiased;
 	p {
 		margin: 0;
+		font-size: 16px;
 	}
 	div {
 		width: auto;
 		padding: 20px;
 	}
 	.Number {
-		font-size: 2em;
+		font-size: 30px;
 		font-weight: 200;
 		margin-top: 5px;
 		margin-bottom:0;
 	}
 	.Positive{
 		color: #1dcc5a;
+		font-size: 16px;
 	}
 	.Negative{
 		color: #cf1111;
+		font-size: 16px;
 	}
 }`;
 
@@ -66,7 +69,7 @@ export const render = ({ cap, change }) => {
 	};
 
 	const num = `$ ${numberWithCommas(Math.round(cap))}`;
-	console.log(change);
+	// console.log(change);
 
 	return (
 		<div className='CryptoMarketCap'>
